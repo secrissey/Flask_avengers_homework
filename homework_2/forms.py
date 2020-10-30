@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Email
 
-# DataRequired == Making sure teh field is filled in
+# DataRequired == Making sure the field is filled in
 # EqualTo == Making sure the field(s) are the same (I.E Password and Config Password)
 # Email == Making Sure the field has a proper email given to it. 
 
@@ -17,4 +17,9 @@ class UserInfoForm(FlaskForm):
 class LoginForm(FlaskForm):
     email = StringField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired()])
+    submit = SubmitField()
+
+class PhoneForm(FlaskForm):
+    name = StringField('Name', validators = [DataRequired()])
+    phone_number = StringField('Phone Number', validators = [DataRequired()])
     submit = SubmitField()

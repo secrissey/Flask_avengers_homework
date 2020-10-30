@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h2>What number would you like to enter now?</h2>
+        <form method="POST">
+            {{update_form.hidden_tag() }}
+            <div class="form-group">
+                <fieldset>
+                    {{ update_form.name.label }}
+                    {{ update_form.name(class = "form-control", placeholder = "Update Name") }}
+                </fieldset>
+
+                <fieldset>
+                    {{ update_form.phone_number.label }}
+                    {{ update_form.phone_number(class = "form-control", placeholder = "Update Phone Number") }}
+                </fieldset>
+                {{ update_form.submit(class = "btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

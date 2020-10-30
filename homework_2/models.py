@@ -16,10 +16,9 @@ def load_user(user_id):
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(150), nullable = False, unique = True)
-    phone = db.Column(db.String(100), nullable = False, unique = True)
+    phone =db.relationship('Phone', backref = 'author', lazy = True)
     email = db.Column(db.String(150), nullable = False, unique = True)
     password = db.Column(db.String(256), nullable = False)
-    post = db.relationship('post', backref = 'author', lazy = True)
 
     def __init__(self,name,phone,email,password):
         self.name = name
@@ -40,17 +39,17 @@ class User(db.Model,UserMixin):
 
 # Creation of the Post Model
 # The Post model will have: id,title,content,date_created,user_id
-class Post(db.Model):
+class Phone(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    title = db.Column(db.String(100))
-    content = db.Column(db.String(300))
+    name = db.Column(db.String(100))
+    phone_number = db.Column(db.String(300))
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
-    def __init__(self,title,content,user_id):
-        self.title = title
-        self.content = content
+    def __init__(self,name,phone_number,user_id):
+        self.name = name
+        self.phone_number = phone_number
         self.user_id = user_id
 
     def __repr__(self):
-        return f'The title of the post is {self.title} \n and the content is {self.content}'
+        return f'The Avengers name is {self.name} \n and their phone number is {self.phone_numer}'
